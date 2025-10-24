@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilos para navegação mobile */
+@layer components {
+  .mobile-nav-item {
+    @apply flex flex-col items-center justify-center py-2 px-3 rounded-lg transition-all duration-200 min-w-0 flex-1;
+  }
+  
+  .mobile-nav-item-active {
+    @apply bg-blue-50;
+  }
+  
+  .mobile-nav-item-inactive {
+    @apply hover:bg-gray-50;
+  }
+  
+  .mobile-nav-icon {
+    @apply w-5 h-5 transition-colors duration-200;
+  }
+  
+  .mobile-nav-icon-active {
+    @apply text-blue-600;
+  }
+  
+  .mobile-nav-icon-inactive {
+    @apply text-gray-500;
+  }
+  
+  .mobile-nav-label {
+    @apply text-xs font-medium mt-1 transition-colors duration-200;
+  }
+  
+  .mobile-nav-label-active {
+    @apply text-blue-600;
+  }
+  
+  .mobile-nav-label-inactive {
+    @apply text-gray-500;
+  }
+}
+
+/* Garantir que o conteúdo não seja sobreposto pela navegação inferior */
+@layer utilities {
+  .pb-safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  
+  .mb-safe-bottom {
+    margin-bottom: env(safe-area-inset-bottom, 0px);
+  }
+}
