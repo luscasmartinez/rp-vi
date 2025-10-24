@@ -32,13 +32,13 @@ export default function AlunoDashboard() {
         return <TeamTab />;
       case 'provas':
         return (
-          <div className="p-4">
+          <div className="p-4 tab-content-padding">
             <ProvaList />
           </div>
         );
       case 'ranking':
         return (
-          <div className="p-4">
+          <div className="p-4 tab-content-padding">
             <StudentTeamRanking 
               isVisible={rankingSettings?.isVisible || false}
             />
@@ -99,7 +99,7 @@ export default function AlunoDashboard() {
       </div>
 
       {/* Conteúdo Principal */}
-      <main className="pb-20 md:pb-8 pb-safe-bottom">
+      <main className="mobile-content-padding">
         {!hasTeam ? (
           <div className="p-4">
             <TeamSelection onTeamSelected={() => {}} />

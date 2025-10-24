@@ -5,7 +5,7 @@
 /* Estilos para navegação mobile */
 @layer components {
   .mobile-nav-item {
-    @apply flex flex-col items-center justify-center py-2 px-3 rounded-lg transition-all duration-200 min-w-0 flex-1;
+    @apply flex flex-col items-center justify-center py-2 px-2 rounded-lg transition-all duration-200 min-w-0 flex-1 mx-1;
   }
   
   .mobile-nav-item-active {
@@ -49,5 +49,23 @@
   
   .mb-safe-bottom {
     margin-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  
+  .mobile-content-padding {
+    padding-bottom: 6rem; /* 96px para dar espaço à navegação inferior */
+  }
+  
+  .tab-content-padding {
+    padding-bottom: 1rem; /* Espaço extra para o conteúdo das abas */
+  }
+  
+  @media (min-width: 768px) {
+    .mobile-content-padding {
+      padding-bottom: 2rem; /* 32px para desktop */
+    }
+    
+    .tab-content-padding {
+      padding-bottom: 0; /* Sem padding extra no desktop */
+    }
   }
 }

@@ -9,7 +9,7 @@ export default function ReviewsTab() {
   const [showCreateReviewModal, setShowCreateReviewModal] = useState(false);
 
   return (
-    <div className="p-4 space-y-6">
+    <div className="p-4 space-y-6 tab-content-padding">
       {/* Header */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <div className="flex items-center justify-between mb-4">

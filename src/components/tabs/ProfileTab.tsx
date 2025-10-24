@@ -17,7 +17,7 @@ export default function ProfileTab() {
   const userReviewRequests = reviewRequests.filter(review => review.createdBy === userProfile?.uid);
 
   return (
-    <div className="p-4 space-y-6">
+    <div className="p-4 space-y-6 tab-content-padding">
       {/* Header do Perfil */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
         <div className="flex items-center gap-4 mb-6">

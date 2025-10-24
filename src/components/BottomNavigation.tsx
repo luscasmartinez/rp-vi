@@ -47,8 +47,8 @@ export default function BottomNavigation({ activeTab, onTabChange, reviewCount =
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40 md:hidden">
-      <div className="flex items-center justify-around py-2 px-1">
+    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40 md:hidden shadow-lg">
+      <div className="flex items-center justify-around py-3 px-1 pb-safe-bottom">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
