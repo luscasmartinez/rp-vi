@@ -6,6 +6,7 @@ import TeamSelection from '../TeamSelection';
 import ProvaList from '../ProvaList';
 import StudentTeamRanking from '../StudentTeamRanking';
 import BottomNavigation from '../BottomNavigation';
+import SideNavigation from '../SideNavigation';
 import TeamTab from '../tabs/TeamTab';
 import ProfileTab from '../tabs/ProfileTab';
 import ReviewsTab from '../tabs/ReviewsTab';
@@ -55,30 +56,6 @@ export default function AlunoDashboard() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-50">
-      {/* Header - apenas em desktop */}
-      <nav className="bg-white shadow-sm border-b border-gray-200 hidden md:block">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <BookOpen className="w-8 h-8 text-blue-600 mr-3" />
-              <h1 className="text-xl font-bold text-gray-800">Dashboard do Aluno</h1>
-            </div>
-            <div className="flex items-center gap-4">
-              <span className="text-sm text-gray-600">
-                Olá, {userProfile?.displayName}
-              </span>
-              <button
-                onClick={() => signOut()}
-                className="flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition"
-              >
-                <LogOut className="w-4 h-4" />
-                Sair
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
-
       {/* Header Mobile */}
       <div className="bg-white shadow-sm border-b border-gray-200 md:hidden">
         <div className="px-4 py-3">
@@ -98,25 +75,80 @@ export default function AlunoDashboard() {
         </div>
       </div>
 
-      {/* Conteúdo Principal */}
-      <main className="mobile-content-padding">
-        {!hasTeam ? (
-          <div className="p-4">
-            <TeamSelection onTeamSelected={() => {}} />
-          </div>
-        ) : (
-          renderTabContent()
+      {/* Layout Desktop */}
+      <div className="hidden md:flex h-screen">
+        {/* Navegação Lateral */}
+        {hasTeam && (
+          <SideNavigation
+            activeTab={activeTab}
+            onTabChange={setActiveTab}
+            reviewCount={userReviewRequests.length}
+          />
         )}
-      </main>
 
-      {/* Navegação Inferior - apenas em mobile */}
-      {hasTeam && (
-        <BottomNavigation
-          activeTab={activeTab}
-          onTabChange={setActiveTab}
-          reviewCount={userReviewRequests.length}
-        />
-      )}
+        {/* Conteúdo Principal Desktop */}
+        <div className="flex-1 flex flex-col">
+          {/* Header Desktop */}
+          <header className="bg-white shadow-sm border-b border-gray-200">
+            <div className="px-6 py-4">
+              <div className="flex justify-between items-center">
+                <div className="flex items-center">
+                  <BookOpen className="w-8 h-8 text-blue-600 mr-3" />
+                  <h1 className="text-xl font-bold text-gray-800">Dashboard do Aluno</h1>
+                </div>
+                <div className="flex items-center gap-4">
+                  <span className="text-sm text-gray-600">
+                    Olá, {userProfile?.displayName}
+                  </span>
+                  <button
+                    onClick={() => signOut()}
+                    className="flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    Sair
+                  </button>
+                </div>
+              </div>
+            </div>
+          </header>
+
+          {/* Conteúdo Principal */}
+          <main className="flex-1 overflow-auto">
+            {!hasTeam ? (
+              <div className="p-6">
+                <TeamSelection onTeamSelected={() => {}} />
+              </div>
+            ) : (
+              <div className="p-6">
+                {renderTabContent()}
+              </div>
+            )}
+          </main>
+        </div>
+      </div>
+
+      {/* Layout Mobile */}
+      <div className="md:hidden">
+        {/* Conteúdo Principal Mobile */}
+        <main className="mobile-content-padding">
+          {!hasTeam ? (
+            <div className="p-4">
+              <TeamSelection onTeamSelected={() => {}} />
+            </div>
+          ) : (
+            renderTabContent()
+          )}
+        </main>
+
+        {/* Navegação Inferior - apenas em mobile */}
+        {hasTeam && (
+          <BottomNavigation
+            activeTab={activeTab}
+            onTabChange={setActiveTab}
+            reviewCount={userReviewRequests.length}
+          />
+        )}
+      </div>
     </div>
   );
 }

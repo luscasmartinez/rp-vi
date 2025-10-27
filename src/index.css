@@ -68,4 +68,19 @@
       padding-bottom: 0; /* Sem padding extra no desktop */
     }
   }
+
+  /* Estilos para navegação lateral */
+  @layer components {
+    .side-nav-item {
+      @apply w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 text-left;
+    }
+    
+    .side-nav-item-active {
+      @apply font-medium border-l-4;
+    }
+    
+    .side-nav-item-inactive {
+      @apply text-gray-600 hover:bg-gray-50 hover:text-gray-900;
+    }
+  }
 }
